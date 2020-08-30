@@ -15,6 +15,7 @@ function format(fmt, ...)
         args_offset = args_offset + 1
         offset = next_fmt + 2
     end
+    table.insert(t, fmt:sub(offset))
     return table.concat(t)
 end
 
@@ -27,7 +28,7 @@ function table_tostring(t)
     local result = {" {"}
     for k,v in pairs(t) do
         if #result > 1 then table.insert(result, ", ") end
-        table.insert(result, string.format("\"%s \"%s", k, v))
+        table.insert(result, string.format("\"%s\"=\"%s\"", k, v))
     end
     table.insert(result, " }")
     return table.concat(result)
