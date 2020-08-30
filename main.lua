@@ -1,6 +1,7 @@
 -- Imports println format and table_tostring
 require "formatting"
 require "tokenizer"
+require "stack"
 
 local str = "2 2.1 + 14-x/"
 local offset = 1
