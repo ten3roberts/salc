@@ -27,8 +27,8 @@ end
 function table_tostring(t) 
     local result = {" {"}
     for k,v in pairs(t) do
-        if #result > 1 then table.insert(result, ", ") end
-        table.insert(result, string.format("\"%s\"=\"%s\"", k, v))
+        if #result > 1 then table.insert(result, ",\t") end
+        table.insert(result, string.format("\"%s\":\t \"%s\"", k, v))
     end
     table.insert(result, " }")
     return table.concat(result)

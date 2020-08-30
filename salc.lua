@@ -9,7 +9,6 @@ end
 -- Defines a token
 function tokenize_pattern(ty, pattern, str, offset) 
     local i,j = str:find("^"..pattern, offset)
-    println("i: {}, j: {}", i, j)
     if i and j then return {ty=ty,value=str:sub(i,j)},j-i+1 else return nil end
 end
 
@@ -46,20 +45,24 @@ function tokenize(tokenizers, str)
     return t
 end
 
-local str = "(((*+ 1 2 + 3"
+local str = "2 2.1 + 14-x/"
 local offset = 1
+
+-- Table of all acceptable tokens
 local tokenizers = {
-    function(str, offset) return tokenize_pattern("operator", "[\\+\\-\\*/%%]", str, offset) end,
+    function(str, offset) return tokenize_pattern("operator", "[%+%-%*%/%%]", str, offset) end,
     function(str, offset) return tokenize_char("paren", "(", str, offset) end,
     function(str, offset) return tokenize_char("paren", ")", str, offset) end,
+    function(str, offset) return tokenize_pattern("number", "[%d%.]+", str, offset) end,
+    function(str, offset) return tokenize_pattern("identifier", "%a+", str, offset) end,
+
+    -- Do whitespace last incase something matches whitespace
     function(str, offset) return tokenize_whitespace(str, offset) end,
-    function(str, offset) return tokenize_pattern("number", "%d", str, offset) end,
 }
 
 local tokens = tokenize(tokenizers, str) 
 
-
-
+-- For now, print tokens
 for i,v in pairs(tokens) do
     println("{}", v)
 end
