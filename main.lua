@@ -41,6 +41,15 @@ function generate_lines(lines, stack)
         line_i = line_i+1
     end
 
+    -- Print and clear errors
+    for i, err in ipairs(errors) do
+        lines[line_i] = format("Error: {}", err)
+        line_i = line_i + 1
+    end
+
+    -- Clear errors
+    errors[1] = nil
+
     -- nil terminate to be able to reuse table without clear
     lines[line_i] = nil
 end

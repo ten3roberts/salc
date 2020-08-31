@@ -9,7 +9,6 @@ end
 function display:read(prompt)
     io.write(prompt or "")
     local s = io.read()
-    -- self.lastn = self.lastn + 1
     return s
 end
 

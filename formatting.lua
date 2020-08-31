@@ -20,9 +20,10 @@ function format(fmt, ...)
     return table.concat(t)
 end
 
-function println(fmt, ...) 
-    io.write(format(fmt, ...)) 
-    io.write("\n") 
+errors = {}
+
+function printerr(fmt, ...) 
+    table.insert(errors, format(fmt, ...)) 
 end
 
 function table_tostring(t) 

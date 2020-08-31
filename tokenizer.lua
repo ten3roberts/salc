@@ -35,7 +35,7 @@ function tokenize(tokenizers, str)
         end
 
         if not success then
-            println("Unknown token after '{}'", str:sub(offset, offset+10))
+            printerr("Unknown token after '{}'", str:sub(offset, offset+10))
             break
         end
     end
