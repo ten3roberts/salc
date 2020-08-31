@@ -15,3 +15,8 @@ Tokens can be entered either all at once or by pressing enter between each
 ```
 Adds 2 and 2 and shows the result
 Later multiplies it by 4
+
+## Similarities
+This project may seem familiar to the builting calculator of Emacs, and that's because it is.
+I thought it was a great calculator and wanted to keep it outside of emacs.
+This made me create my own giving me an opportinity to learn more lua, which I think is quite neat.
