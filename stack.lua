@@ -14,10 +14,12 @@ function stack_popn(stack, n)
         println("Too few elements in stack")
         return nil
     end
-    for i=#stack-n+1,n do
+
+    for i=#stack-n+1,#stack do
         table.insert(t, stack[i])
         stack[i]=nil
     end
+
     return t
 end
 
@@ -36,7 +38,6 @@ function stack_push(stack, tokens)
         number=function(token) table.insert(stack, token.value) end,
         operator=function(token) 
             local op = operations[token.value]
-            stack_print(stack)
             if op == nil then println("Unknown operation '{}'", token.value) return end
             local args = stack_popn(stack, op.n)
 
@@ -54,13 +55,5 @@ function stack_push(stack, tokens)
             break
         end
         action(token)
-    end
-    stack_print(stack)
-end
-
-function stack_print(stack) 
-    println("Stack:")
-    for i,v in ipairs(stack) do
-        println("\t{}: {}", i, v)
     end
 end
