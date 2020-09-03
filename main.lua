@@ -8,8 +8,8 @@ require "display"
 
 -- Table of all acceptable tokens
 local tokenizers = {
+    function(str, offset) return tokenize_pattern("number", "%-?[%d%.]+", str, offset) end,
     function(str, offset) return tokenize_pattern("operator", "[%+%-%*%/%%%^%=%u]", str, offset) end,
-    function(str, offset) return tokenize_pattern("number", "[%d%.]+", str, offset) end,
     function(str, offset) return tokenize_pattern("identifier", "%l+", str, offset) end,
 
     -- Do whitespace last incase something matches whitespace
