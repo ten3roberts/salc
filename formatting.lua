@@ -9,8 +9,9 @@ function format(fmt, ...)
         -- Insert part before next {}
         table.insert(t, string.sub(fmt, offset, next_fmt-1))
         local arg = args[args_offset]
-        if type(arg) == "table" then arg = table_tostring(arg) end
-        if arg == nil then arg = "nil" end
+        if type(arg) == "table" then arg = table_tostring(arg) 
+        elseif arg == nil then arg = "nil"
+        else arg = tostring(arg) end
 
         table.insert(t, arg)
         args_offset = args_offset + 1

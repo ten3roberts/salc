@@ -25,9 +25,14 @@ function display:draw(lines)
         term.up()
     end
 
+    if #lines == 0 then io.write("\n") end
+
+    local line_num = 0
     for i,line in ipairs(lines) do
         io.write(line)
         io.write("\n")
+        line_num = line_num + 1
     end
-    self.lastn = #lines
+
+    self.lastn = line_num
 end
